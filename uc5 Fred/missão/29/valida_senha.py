@@ -1,13 +1,27 @@
-texto = input("Digite um texto: ")
+senha = input("Digite a senha: ")
 
-maiusculas = 0
-minusculas = 0
+tem_maiuscula = False
+tem_minuscula = False
+tem_numero = False
+tem_especial = False
 
-for letra in texto:
-    if letra.isupper():
-        maiusculas += 1
-    elif letra.islower():
-        minusculas += 1
+caracteres_especiais = "!@#$%&*()-_=+[]{};:,.?/"
 
-print("Número de letras maiúsculas:", maiusculas)
-print("Número de letras minúsculas:", minusculas)
+if len(senha) >= 8:
+    
+    for caractere in senha:
+        if caractere.isupper():
+            tem_maiuscula = True
+        elif caractere.islower():
+            tem_minuscula = True
+        elif caractere.isdigit():
+            tem_numero = True
+        elif caractere in caracteres_especiais:
+            tem_especial = True
+
+    if tem_maiuscula and tem_minuscula and tem_numero and tem_especial:
+        print("Senha válida e forte!")
+    else:
+        print("Senha inválida! Não atende a todos os requisitos.")
+else:
+    print("Senha inválida! Deve ter no mínimo 8 caracteres.")
